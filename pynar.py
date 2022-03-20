@@ -314,8 +314,9 @@ class MainWindow(QMainWindow):
         self.loginWindow.show()
 
     def initUI(self, MainWindow):
-        self.header = QtWidgets.QMenuBar()
+        self.header = self.menuBar()
         self.header.setFixedHeight(120)
+        self.header.setNativeMenuBar(False)
         self.header.setStyleSheet("""
             QMenuBar {background-color: #394b58;}
             QMenuBar::item {background-color: #394b58;}
@@ -510,6 +511,8 @@ class MainWindow(QMainWindow):
             documents_dir = os.path.join(os.environ['USERPROFILE'] + "/Documents/PynarKutu/")
         elif plt == "Linux":
             documents_dir = subprocess.check_output(["xdg-user-dir", "DOCUMENTS"], universal_newlines = True).strip() + "/PynarKutu"
+        else:
+            documents_dir = os.path.join(os.path.expanduser('~/Documents') + "/PynarKutu/")
 
         if not os.path.exists(documents_dir):
             os.makedirs(documents_dir)
@@ -590,6 +593,8 @@ class MainWindow(QMainWindow):
             documents_dir = os.path.join(os.environ['USERPROFILE'] + "/Documents/PynarKutu/")
         elif plt == "Linux":
             documents_dir = subprocess.check_output(["xdg-user-dir", "DOCUMENTS"], universal_newlines = True).strip() + "/PynarKutu"
+        else:
+            documents_dir = os.path.join(os.path.expanduser('~/Documents') + "/PynarKutu/")
 
         if not os.path.exists(documents_dir):
             os.makedirs(documents_dir)
